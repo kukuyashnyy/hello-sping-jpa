@@ -1,5 +1,6 @@
 package org.itstep.controller.domain.dao.impl;
 
+import org.itstep.aspect.Cached;
 import org.itstep.controller.domain.dao.TaskDao;
 import org.itstep.controller.domain.entity.Task;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,7 @@ public class TaskDaoImpl implements TaskDao {
     }
 
     @Override
+    @Cached
     public Task findById(Integer integer) {
         Task task = entityManager.find(Task.class, integer);
         System.out.println("Find Id: " + task);
@@ -37,6 +39,7 @@ public class TaskDaoImpl implements TaskDao {
     }
 
     @Override
+    @Cached
     public List<Task> findAll() {
         return entityManager.createQuery("FROM Task", Task.class).getResultList();
     }
